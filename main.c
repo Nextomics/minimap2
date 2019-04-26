@@ -98,6 +98,12 @@ static inline void yes_or_no(mm_mapopt_t *opt, int flag, int long_idx, const cha
 	}
 }
 
+/*GrandOmics comment
+	main function
+	1. initialize and set parameters for indexing and mapping
+	2. build minimap2 index
+	3. map sequence date against index
+*/
 int main(int argc, char *argv[])
 {
 	const char *opt_str = "2aSDw:k:K:t:r:f:Vv:g:G:I:d:XT:s:x:Hcp:M:n:z:A:B:O:E:m:N:Qu:R:hF:LC:yYPo:";
@@ -113,6 +119,7 @@ int main(int argc, char *argv[])
 	mm_verbose = 3;
 	liftrlimit();
 	mm_realtime0 = realtime();
+	//GrandOmics comment: init parameters, refer to options.c
 	mm_set_opt(0, &ipt, &opt);
 
 	while ((c = ketopt(&o, argc, argv, 1, opt_str, long_options)) >= 0) { // test command line options and apply option -x/preset first
@@ -272,6 +279,8 @@ int main(int argc, char *argv[])
 		opt.best_n = old_best_n, opt.flag |= MM_F_NO_PRINT_2ND;
 	}
 
+	//GrandOmics comment
+	//For more detailed usage and format description, use man ./minimap2.1
 	if (argc == o.ind || fp_help == stdout) {
 		fprintf(fp_help, "Usage: minimap2 [options] <target.fa>|<target.idx> [query.fa] [...]\n");
 		fprintf(fp_help, "Options:\n");

@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "mmpriv.h"
 
+/*GrandOmics comment
+	initialize paramters for indexing
+	k => kmer size, w => window size
+*/
 void mm_idxopt_init(mm_idxopt_t *opt)
 {
 	memset(opt, 0, sizeof(mm_idxopt_t));
@@ -10,6 +14,9 @@ void mm_idxopt_init(mm_idxopt_t *opt)
 	opt->batch_size = 4000000000ULL;
 }
 
+/*GrandOmics comment
+	initialize parameters for mapping
+*/
 void mm_mapopt_init(mm_mapopt_t *opt)
 {
 	memset(opt, 0, sizeof(mm_mapopt_t));
