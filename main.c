@@ -342,6 +342,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "[ERROR] incorrect input: in the sr mode, please specify no more than two query files.\n");
 		return 1;
 	}
+	//GrandOmics comment: open index reader
 	idx_rdr = mm_idx_reader_open(argv[o.ind], &ipt, fnw);
 	if (idx_rdr == 0) {
 		fprintf(stderr, "[ERROR] failed to open file '%s'\n", argv[o.ind]);
@@ -354,7 +355,7 @@ int main(int argc, char *argv[])
 	}
 	if (opt.best_n == 0 && (opt.flag&MM_F_CIGAR) && mm_verbose >= 2)
 		fprintf(stderr, "[WARNING]\033[1;31m `-N 0' reduces alignment accuracy. Please use --secondary=no to suppress secondary alignments.\033[0m\n");
-	while ((mi = mm_idx_reader_read(idx_rdr, n_threads)) != 0) {
+	while ((mi = mm_idx_reader_read(idx_rdr, n_threads)) != 0) { //GrandOmics comment: tranverse index part
 		if ((opt.flag & MM_F_CIGAR) && (mi->flag & MM_I_NO_SEQ)) {
 			fprintf(stderr, "[ERROR] the prebuilt index doesn't contain sequences.\n");
 			mm_idx_destroy(mi);
